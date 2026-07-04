@@ -11,6 +11,10 @@ export const PROFILE = {
   github: "https://github.com/theresros",
   linkedin: "https://linkedin.com/in/theresrose-vilsan-a998a8290",
   resumeUrl: "#",
+  // Set this to your Google Drive file ID (from the share link
+  // https://drive.google.com/file/d/<ID>/view) to render your Drive photo
+  // as the hero portrait. Leave empty to use the generated fallback.
+  driveProfileId: "",
 };
 
 export const CAREER_OBJECTIVE =
