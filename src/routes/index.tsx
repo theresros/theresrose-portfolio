@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Download,
   ArrowRight,
@@ -55,31 +55,22 @@ function Typing({ words }: { words: string[] }) {
   const [txt, setTxt] = useState("");
   const [del, setDel] = useState(false);
 
-  useTypingEffect(words, i, txt, del, setI, setTxt, setDel);
+  useEffect(() => {
+    const w = words[i];
+    const t = setTimeout(() => {
+      if (!del && txt === w) { setDel(true); return; }
+      if (del && txt === "") { setDel(false); setI((v) => (v + 1) % words.length); return; }
+      setTxt(del ? w.slice(0, txt.length - 1) : w.slice(0, txt.length + 1));
+    }, !del && txt === w ? 1400 : del ? 40 : 70);
+    return () => clearTimeout(t);
+  }, [txt, del, i, words]);
+
   return (
     <span className="text-gradient">
       {txt}
       <span className="inline-block w-0.5 h-[1em] bg-primary ml-1 align-middle animate-pulse" />
     </span>
   );
-}
-
-function useTypingEffect(
-  words: string[],
-  i: number,
-  txt: string,
-  del: boolean,
-  setI: (v: number) => void,
-  setTxt: (v: string) => void,
-  setDel: (v: boolean) => void,
-) {
-  const w = words[i];
-  if (typeof window === "undefined") return;
-  setTimeout(() => {
-    if (!del && txt === w) { setTimeout(() => setDel(true), 1200); return; }
-    if (del && txt === "") { setDel(false); setI((i + 1) % words.length); return; }
-    setTxt(del ? w.slice(0, txt.length - 1) : w.slice(0, txt.length + 1));
-  }, del ? 40 : 70);
 }
 
 function Hero() {
