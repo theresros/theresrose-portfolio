@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Phone, ArrowUp } from "lucide-react";
+import { Mail, Phone, ArrowUp } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
 import { PROFILE } from "@/lib/data";
 
 export function Footer() {
@@ -24,10 +25,10 @@ export function Footer() {
           </div>
           <div className="flex md:justify-end items-start gap-3">
             <a href={PROFILE.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="h-10 w-10 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center text-body transition-colors">
-              <Github className="h-4 w-4" />
+              <GithubIcon className="h-4 w-4" />
             </a>
             <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="h-10 w-10 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center text-body transition-colors">
-              <Linkedin className="h-4 w-4" />
+              <LinkedinIcon className="h-4 w-4" />
             </a>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
