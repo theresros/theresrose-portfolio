@@ -92,9 +92,9 @@ export const PROJECTS = [
 const drive = (id: string) => `https://drive.google.com/uc?export=view&id=${id}`;
 
 export const GALLERY = [
-  { drive: drive("1u5wxNCyMBClg4yLDASD6z4vd9M1TsrmX"), fallback: "/journey-1.jpg", alt: "Award moment" },
-  { drive: drive("1CUsE17dzxRpwYx64fbGT4-1NwWTfVpMj"), fallback: "/journey-2.jpg", alt: "Lab work" },
-  { drive: drive("1CcMvnawLiJiy37eH1aPf4ScX94HFdUNc"), fallback: "/journey-3.jpg", alt: "Presenting" },
+  { drive: drive("1u5wxNCyMBClg4yLDASD6z4vd9M1TsrmX"), fallback: "/images/journey-1.jpg", alt: "Award moment" },
+  { drive: drive("1CUsE17dzxRpwYx64fbGT4-1NwWTfVpMj"), fallback: "/images/journey-2.jpg", alt: "Lab work" },
+  { drive: drive("1CcMvnawLiJiy37eH1aPf4ScX94HFdUNc"), fallback: "/images/journey-3.jpg", alt: "Presenting" },
 ];
 
 export const ACHIEVEMENTS = [
