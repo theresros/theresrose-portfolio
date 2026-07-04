@@ -1,19 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession } from "@tanstack/react-start/server";
-
-type GateSession = { admin?: boolean };
-
-const sessionConfig = () => ({
-  password: process.env.SESSION_SECRET!,
-  name: "pm-vikas-admin",
-  maxAge: 60 * 60 * 24 * 30,
-  cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
-});
-
-async function assertAdmin() {
-  const session = await useSession<GateSession>(sessionConfig());
-  if (!session.data.admin) throw new Error("Unauthorized");
-}
 
 export type Activity = {
   id: string;
@@ -47,6 +32,7 @@ export const createActivity = createServerFn({ method: "POST" })
     status?: string;
   }) => data)
   .handler(async ({ data }) => {
+    const { assertAdmin } = await import("./gate.server");
     await assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row, error } = await supabaseAdmin
@@ -74,6 +60,7 @@ export const updateActivity = createServerFn({ method: "POST" })
     status?: string;
   }) => data)
   .handler(async ({ data }) => {
+    const { assertAdmin } = await import("./gate.server");
     await assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { id, ...patch } = data;
@@ -90,6 +77,7 @@ export const updateActivity = createServerFn({ method: "POST" })
 export const deleteActivity = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
+    const { assertAdmin } = await import("./gate.server");
     await assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
