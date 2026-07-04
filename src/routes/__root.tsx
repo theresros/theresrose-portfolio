@@ -85,9 +85,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Portfolio of Theresrose Vilsan — full-stack software engineer, IoT builder, and PM-VIKAS intern at IIIT Kottayam." },
       { name: "author", content: "Theresrose Vilsan" },
       { property: "og:title", content: "Theresrose Vilsan — Full-Stack Software Engineer" },
-      { property: "og:description", content: "Full-stack engineer building thoughtful software, IoT systems and AI experiences." },
+      { property: "og:description", content: "Portfolio of Theresrose Vilsan — full-stack software engineer, IoT builder, and PM-VIKAS intern at IIIT Kottayam." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Theresrose Vilsan — Full-Stack Software Engineer" },
+      { name: "twitter:description", content: "Portfolio of Theresrose Vilsan — full-stack software engineer, IoT builder, and PM-VIKAS intern at IIIT Kottayam." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/482f17a7-7ff4-4d06-bbed-dd6993c3296c/id-preview-fe5064c8--2f0f534b-66ac-4398-8927-1a7938481096.lovable.app-1783150677093.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/482f17a7-7ff4-4d06-bbed-dd6993c3296c/id-preview-fe5064c8--2f0f534b-66ac-4398-8927-1a7938481096.lovable.app-1783150677093.png" },
     ],
     links: [
       {
