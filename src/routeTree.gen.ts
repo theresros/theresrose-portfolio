@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PmVikasRouteImport } from './routes/pm-vikas'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PmVikasRoute = PmVikasRouteImport.update({
+  id: '/pm-vikas',
+  path: '/pm-vikas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AchievementsRoute = AchievementsRouteImport.update({
   id: '/achievements',
   path: '/achievements',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
+  '/pm-vikas': typeof PmVikasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
+  '/pm-vikas': typeof PmVikasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
+  '/pm-vikas': typeof PmVikasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/achievements'
+  fullPaths: '/' | '/achievements' | '/pm-vikas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/achievements'
-  id: '__root__' | '/' | '/achievements'
+  to: '/' | '/achievements' | '/pm-vikas'
+  id: '__root__' | '/' | '/achievements' | '/pm-vikas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AchievementsRoute: typeof AchievementsRoute
+  PmVikasRoute: typeof PmVikasRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/pm-vikas': {
+      id: '/pm-vikas'
+      path: '/pm-vikas'
+      fullPath: '/pm-vikas'
+      preLoaderRoute: typeof PmVikasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/achievements': {
       id: '/achievements'
       path: '/achievements'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AchievementsRoute: AchievementsRoute,
+  PmVikasRoute: PmVikasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
