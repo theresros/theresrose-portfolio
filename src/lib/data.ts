@@ -11,6 +11,10 @@ export const PROFILE = {
   github: "https://github.com/theresros",
   linkedin: "https://linkedin.com/in/theresrose-vilsan-a998a8290",
   resumeUrl: "#",
+  // Set this to your Google Drive file ID (from the share link
+  // https://drive.google.com/file/d/<ID>/view) to render your Drive photo
+  // as the hero portrait. Leave empty to use the generated fallback.
+  driveProfileId: "",
 };
 
 export const CAREER_OBJECTIVE =
@@ -87,9 +91,12 @@ export const PROJECTS = [
   },
 ];
 
-// Google Drive images — converted from share URLs. If a link fails to load,
-// the UI falls back to the generated local asset next to it.
-const drive = (id: string) => `https://drive.google.com/uc?export=view&id=${id}`;
+// Google Drive images — converted from share URLs to the `lh3.googleusercontent.com`
+// direct-render endpoint, which serves the file inline (unlike `uc?export=view`,
+// which returns an HTML redirect page that <img> can't render). If a link
+// fails, the UI falls back to the generated local asset next to it.
+export const drive = (id: string, width = 2000) =>
+  `https://lh3.googleusercontent.com/d/${id}=w${width}`;
 
 export const GALLERY = [
   { drive: drive("1u5wxNCyMBClg4yLDASD6z4vd9M1TsrmX"), fallback: "/images/journey-1.jpg", alt: "Award moment" },

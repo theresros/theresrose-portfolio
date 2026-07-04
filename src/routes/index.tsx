@@ -30,6 +30,7 @@ import {
   PROJECTS,
   GALLERY,
 } from "@/lib/data";
+import { drive } from "@/lib/data";
 import profileImg from "@/assets/profile.jpg";
 
 export const Route = createFileRoute("/")({
@@ -133,8 +134,9 @@ function Hero() {
           <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-primary/40 via-secondary/40 to-primary/30 blur-3xl animate-float-slow" />
           <div className="relative h-72 w-72 md:h-96 md:w-96 rounded-full p-1.5 bg-gradient-to-br from-primary via-secondary to-primary shadow-[0_30px_80px_-20px_rgba(255,90,95,0.45)]">
             <div className="h-full w-full rounded-full overflow-hidden bg-white">
-              <img
-                src={profileImg}
+              <SmartImage
+                src={PROFILE.driveProfileId ? drive(PROFILE.driveProfileId, 1200) : profileImg}
+                fallback={profileImg}
                 alt={PROFILE.name}
                 width={768}
                 height={768}
