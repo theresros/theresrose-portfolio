@@ -98,6 +98,9 @@ function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={PROFILE.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              download
               className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-5 py-3 text-sm font-semibold hover:bg-primary/90 transition-all hover:shadow-[0_10px_30px_-10px_rgba(255,90,95,0.6)] active:scale-95"
             >
               <Download className="h-4 w-4" /> Download Resume
