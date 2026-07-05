@@ -10,7 +10,7 @@ export const PROFILE = {
   location: "Thrissur, Kerala, India",
   github: "https://github.com/theresros",
   linkedin: "https://linkedin.com/in/theresrose-vilsan-a998a8290",
-  resumeUrl: "#",
+  resumeUrl: "https://drive.google.com/uc?export=download&id=1t0XKyDD_nZDkH1pKZ2lX-MHBIyFd_D_E",
   // Set this to your Google Drive file ID (from the share link
   // https://drive.google.com/file/d/<ID>/view) to render your Drive photo
   // as the hero portrait. Leave empty to use the generated fallback.
@@ -25,15 +25,15 @@ export const PROFESSIONAL_SUMMARY =
 
 export const EDUCATION = [
   {
-    school: "College — replace with your institution",
-    degree: "B.Tech in Computer Science / Electronics",
-    period: "2022 — 2026",
-    cgpa: "CGPA — add from resume",
+    school: "Christ College Of Engineering",
+    degree: "B.Tech in Computer Science",
+    period: "2023 — 2027",
+    cgpa: "",
   },
   {
-    school: "Higher Secondary",
-    degree: "Class XI–XII, Computer Science stream",
-    period: "2020 — 2022",
+    school: "Nirmala Matha Central School",
+    degree: "Higher Secondary, Class XI–XII",
+    period: "2021 — 2023",
     cgpa: "",
   },
 ];
@@ -54,7 +54,7 @@ export const EXPERIENCE = [
     role: "IoT Assistant Intern",
     org: "Indian Institute of Information Technology, Kottayam",
     program: "PM-VIKAS Skill Development Programme",
-    period: "2025 — Present",
+    period: "2026 — Present",
     bullets: [
       "Selected for the PM-VIKAS IoT Assistant training programme at IIIT Kottayam.",
       "Working on embedded systems, sensors, microcontrollers and end-to-end IoT prototypes.",
