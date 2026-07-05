@@ -14,7 +14,7 @@ export const PROFILE = {
   // Set this to your Google Drive file ID (from the share link
   // https://drive.google.com/file/d/<ID>/view) to render your Drive photo
   // as the hero portrait. Leave empty to use the generated fallback.
-  driveProfileId: "",
+  driveProfileId: "1DWjmNg8AzD0M5Gy61LEI4pKIWt3xk222",
 };
 
 export const CAREER_OBJECTIVE =
