@@ -6,6 +6,7 @@ import {
 import { Section } from "@/components/Section";
 import { Blobs } from "@/components/Blobs";
 import { ActivityCalendar, CalendarStats } from "@/components/ActivityCalendar";
+import { MonthCalendar } from "@/components/MonthCalendar";
 import { PMVIKAS } from "@/lib/data";
 
 export const Route = createFileRoute("/pm-vikas")({
@@ -137,6 +138,9 @@ function PmVikasPage() {
         </div>
         <div className="card-premium p-6 md:p-8">
           <ActivityCalendar />
+        </div>
+        <div className="card-premium p-6 md:p-8 mt-6">
+          <MonthCalendar />
         </div>
       </Section>
     </div>
