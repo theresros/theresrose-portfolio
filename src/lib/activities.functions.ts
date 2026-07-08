@@ -32,8 +32,6 @@ export const createActivity = createServerFn({ method: "POST" })
     status?: string;
   }) => data)
   .handler(async ({ data }) => {
-    const { assertAdmin } = await import("./gate.server");
-    await assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row, error } = await supabaseAdmin
       .from("daily_activities")
@@ -43,7 +41,7 @@ export const createActivity = createServerFn({ method: "POST" })
         title: data.title,
         description: data.description ?? null,
         status: data.status ?? "completed",
-        created_by: "admin",
+        created_by: "visitor",
       })
       .select()
       .single();
@@ -60,8 +58,6 @@ export const updateActivity = createServerFn({ method: "POST" })
     status?: string;
   }) => data)
   .handler(async ({ data }) => {
-    const { assertAdmin } = await import("./gate.server");
-    await assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { id, ...patch } = data;
     const { data: row, error } = await supabaseAdmin
@@ -77,8 +73,6 @@ export const updateActivity = createServerFn({ method: "POST" })
 export const deleteActivity = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    const { assertAdmin } = await import("./gate.server");
-    await assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("daily_activities")
