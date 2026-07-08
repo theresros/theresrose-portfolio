@@ -1,9 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { LogIn, LogOut, ShieldCheck, Menu, X } from "lucide-react";
-import { AdminModal } from "@/components/AdminModal";
-import { useAdmin } from "@/lib/admin-context";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -15,9 +13,7 @@ const NAV = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
   const [mobile, setMobile] = useState(false);
-  const { isAdmin, logout } = useAdmin();
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 24);
@@ -27,7 +23,6 @@ export function Navbar() {
   }, []);
 
   return (
-    <>
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -55,28 +50,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            {isAdmin ? (
-              <div className="flex items-center gap-2">
-                <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-success/10 text-success px-3 py-1 text-xs font-semibold">
-                  <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
-                  Admin Active
-                </span>
-                <button
-                  onClick={() => logout()}
-                  className="inline-flex items-center gap-1.5 text-sm text-body hover:text-heading"
-                  aria-label="Log out admin"
-                >
-                  <LogOut className="h-4 w-4" /> <span className="hidden sm:inline">Logout</span>
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setOpen(true)}
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-heading text-white px-4 py-2 text-sm font-medium hover:bg-heading/90 transition-colors"
-              >
-                <LogIn className="h-4 w-4" /> Login
-              </button>
-            )}
             <button
               onClick={() => setMobile((v) => !v)}
               className="md:hidden p-2 rounded-lg text-heading hover:bg-section"
@@ -103,23 +76,8 @@ export function Navbar() {
                 {n.label}
               </Link>
             ))}
-            {!isAdmin && (
-              <button
-                onClick={() => { setMobile(false); setOpen(true); }}
-                className="w-full inline-flex items-center justify-center gap-1.5 rounded-full bg-heading text-white px-4 py-2 text-sm font-medium"
-              >
-                <LogIn className="h-4 w-4" /> Login
-              </button>
-            )}
-            {isAdmin && (
-              <div className="flex items-center gap-2 text-sm text-success">
-                <ShieldCheck className="h-4 w-4" /> Admin active
-              </div>
-            )}
           </motion.div>
         )}
       </motion.header>
-      <AdminModal open={open} onClose={() => setOpen(false)} />
-    </>
   );
 }
