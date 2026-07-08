@@ -10,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useAdmin } from "@/lib/admin-context";
 import {
   listActivities,
   createActivity,
@@ -50,7 +49,6 @@ function daysBack(n: number) {
 
 export function ActivityCalendar() {
   const qc = useQueryClient();
-  const { isAdmin } = useAdmin();
 
   const list = useServerFn(listActivities);
   const create = useServerFn(createActivity);
@@ -112,7 +110,7 @@ export function ActivityCalendar() {
   }
 
   function submit() {
-    if (!isAdmin || !selected) return;
+    if (!selected) return;
     if (!form.title.trim()) { toast.error("Title is required"); return; }
     if (editing) {
       updateMut.mutate({ id: editing.id, activity_type: form.type, title: form.title, description: form.description, status: form.status });
@@ -198,19 +196,16 @@ export function ActivityCalendar() {
                     <div className="font-medium text-heading text-sm">{a.title}</div>
                     {a.description && <div className="text-xs text-body mt-0.5">{a.description}</div>}
                   </div>
-                  {isAdmin && (
                     <div className="flex gap-1">
                       <button onClick={() => startEdit(a)} className="p-1.5 rounded-md hover:bg-section text-body hover:text-heading" aria-label="Edit"><Pencil className="h-3.5 w-3.5" /></button>
                       <button onClick={() => deleteMut.mutate(a.id)} className="p-1.5 rounded-md hover:bg-destructive/10 text-body hover:text-destructive" aria-label="Delete"><Trash2 className="h-3.5 w-3.5" /></button>
                     </div>
-                  )}
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
 
-          {isAdmin ? (
-            <div className="pt-4 border-t border-border space-y-3">
+          <div className="pt-4 border-t border-border space-y-3">
               <div className="flex items-center justify-between">
                 <div className="text-sm font-semibold text-heading">{editing ? "Edit activity" : "Add activity"}</div>
                 {editing && (
@@ -252,12 +247,7 @@ export function ActivityCalendar() {
               <Button onClick={submit} disabled={createMut.isPending || updateMut.isPending} className="w-full rounded-lg bg-primary hover:bg-primary/90 text-white">
                 <Plus className="h-4 w-4 mr-1" /> {editing ? "Save changes" : "Add activity"}
               </Button>
-            </div>
-          ) : (
-            <div className="pt-4 border-t border-border">
-              <p className="text-sm text-body italic">Log in as admin to add or edit activities.</p>
-            </div>
-          )}
+          </div>
         </DialogContent>
       </Dialog>
     </div>
